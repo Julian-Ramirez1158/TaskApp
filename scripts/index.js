@@ -26,7 +26,7 @@ statusAlert.hidden = true;
 // alert.hidden = true;
 
 // Boolean that is returned from validator function
-let validInput = false;
+let validInput = true;
 
 // Number of form inputs validated
 // let numValidInputs = 0;
@@ -59,7 +59,7 @@ newTaskForm.addEventListener('submit', (event) => {
     
     if (validInput === true) {
         // Add the task to the task manager
-        taskManager.addTask(name, description, assignedTo, dueDate);
+        taskManager.addTask(name, description, assignedTo, dueDate, status);
         // Render the tasks
         taskManager.render();
     }
@@ -92,43 +92,44 @@ newTaskForm.addEventListener('submit', (event) => {
 
 function validFormFieldInput (name, description, assignedTo, dueDate, status) {
     
-    // let formInputs = [name, description, assignedTo, dueDate, status]
-
-    // for (let i = 0; i < formInputs.length; i++) {
-    //     for (let j = 0; j < alert.length; j++) {
-    //         if (formInputs[i] === null || formInputs[i] === '') {
-    //             alert[j].hidden = false;
-    //         }
-    //         else {
-    //             alert[j].hidden = true;
-    //         }
-    //     }
-    //     if (alert.hidden === true) {
-    //         validInput = true;
-    //     }
-    // }
-
-    
-    // return validInput;
+    validInput = true;
 
     if (name === null || name === '') {
         nameAlert.hidden = false;
-    }
-    else if (description === null || description === '') {
-        descriptionAlert.hidden = false;
-    }
-    else if (assignedTo === null || assignedTo === '') {
-        assignedToAlert.hidden = false;
-    }
-    else if (dueDate === null || dueDate === '') {
-        dueDateAlert.hidden = false;
-    }
-    else if (status === null || status === '') {
-        statusAlert.hidden = false;
+        validInput = false;
     }
     else {
-        validInput = true;
+        nameAlert.hidden = true;
     }
+    if (description === null || description === '') {
+        descriptionAlert.hidden = false;
+        validInput = false;
+    }
+    else {
+        descriptionAlert.hidden = true;
+    }
+    if (assignedTo === null || assignedTo === '') {
+        assignedToAlert.hidden = false;
+        validInput = false;
+    }
+    else {
+        assignedToAlert.hidden = true;
+    }
+    if (dueDate === null || dueDate === '') {
+        dueDateAlert.hidden = false;
+        validInput = false;
+    }
+    else {
+        dueDateAlert.hidden = true;
+    }
+    if (status === null || status === '') {
+        statusAlert.hidden = false;
+        validInput = false;
+    }
+    else {
+        statusAlert.hidden = true;
+    }
+ 
     return validInput;
 
 }
