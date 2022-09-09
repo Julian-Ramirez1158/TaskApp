@@ -13,7 +13,7 @@ const createHTML =  (id, name, description, assignedTo, dueDate, status) =>
             <li class="list-group-item">Status: ${status}</li>
         </ul>
     </div>
-    <button class="btn btn-success mt-3 done-button ${status === 'TODO' ? 'visible' : 'invisible'}">Mark As Done</button>
+    <button class="btn btn-success mt-3 done-button ${status === 'TO DO' || status === "IN PROGRESS" || status === "REVIEW" ? 'visible' : 'invisible'}">Mark As Done</button>
     <button class="btn btn-danger mt-3 delete-button pull-right">Delete</button>
 </li>`;
 
@@ -26,7 +26,7 @@ class TaskManager {
     }
 
     // Create the addTask method
-    addTask(name, description, assignedTo, dueDate) {
+    addTask(name, description, assignedTo, dueDate, status) {
         const task = {
             // Increment the currentId property
             id: this.currentId++,
@@ -34,7 +34,7 @@ class TaskManager {
             description: description,
             assignedTo: assignedTo,
             dueDate: dueDate,
-            status: 'TODO'
+            status: status
         };
 
         // Push the task to the tasks property
